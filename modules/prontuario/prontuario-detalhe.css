@@ -1,0 +1,547 @@
+/* ============================================================
+   prontuario-detalhe.css
+   Clínica System — Prontuário do Paciente
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
+
+/* ── Variáveis ────────────────────────────────────────────── */
+:root {
+  --azul-escuro:    #0f2744;
+  --azul-medio:     #1a4480;
+  --azul-claro:     #2e6fbe;
+  --azul-accent:    #3b9eff;
+  --verde-saude:    #18a87c;
+  --fundo:          #f4f7fb;
+  --fundo-card:     #ffffff;
+  --borda:          #dce6f5;
+  --texto-principal:#1a2b45;
+  --texto-suave:    #5a7299;
+  --sombra-card:    0 2px 16px 0 rgba(15,39,68,.08);
+  --radius:         14px;
+  --radius-sm:      8px;
+  --transition:     .22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--fundo);
+  color: var(--texto-principal);
+  min-height: 100vh;
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+.page {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: var(--azul-escuro);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 1.5rem;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.sidebar h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.45rem;
+  color: #fff;
+  letter-spacing: .02em;
+  padding: 0 1.5rem 1.8rem;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  margin-bottom: .6rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  flex: 1;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: .65rem 1.5rem;
+  color: rgba(255,255,255,.68);
+  text-decoration: none;
+  font-size: .875rem;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+  transition: var(--transition);
+  letter-spacing: .01em;
+}
+
+.sidebar ul li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,.07);
+  border-left-color: var(--azul-accent);
+}
+
+.sidebar ul li a.active {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(59,158,255,.15);
+  border-left-color: var(--azul-accent);
+}
+
+/* ── Main ─────────────────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  padding: 0 2.5rem 3rem;
+  max-width: 1100px;
+}
+
+/* ── Topbar ───────────────────────────────────────────────── */
+.topbar {
+  padding: 1.1rem 0;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 2rem;
+}
+
+/* ── Page header ──────────────────────────────────────────── */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--azul-escuro);
+  line-height: 1.2;
+  margin-bottom: .35rem;
+}
+
+.page-header p {
+  color: var(--texto-suave);
+  font-size: .92rem;
+  font-weight: 300;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CARD DO PACIENTE  (.dados-paciente-box > .card-info)
+   gerado por renderizarPaciente()
+   ════════════════════════════════════════════════════════════ */
+.dados-paciente-box {
+  background: linear-gradient(120deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+  border-radius: var(--radius);
+  padding: 1.8rem 2rem;
+  margin-bottom: 1.8rem;
+  box-shadow: var(--sombra-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.dados-paciente-box::before {
+  content: '';
+  position: absolute;
+  right: -50px; top: -50px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+  pointer-events: none;
+}
+
+.dados-paciente-box::after {
+  content: '';
+  position: absolute;
+  right: 60px; bottom: -60px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.04);
+  pointer-events: none;
+}
+
+/* .card-info injetado pelo JS */
+.dados-paciente-box .card-info {
+  position: relative;
+  z-index: 1;
+}
+
+.dados-paciente-box .card-info h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: .9rem;
+  line-height: 1.2;
+}
+
+.dados-paciente-box .card-info p {
+  font-size: .875rem;
+  color: rgba(255,255,255,.72);
+  line-height: 1.8;
+}
+
+.dados-paciente-box .card-info p strong {
+  color: rgba(255,255,255,.95);
+  font-weight: 600;
+  margin-right: .3rem;
+}
+
+/* ── Formulário ───────────────────────────────────────────── */
+.card,
+.form-card {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--sombra-card);
+  border: 1px solid var(--borda);
+  margin-bottom: 2rem;
+}
+
+.form-card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem;
+  color: var(--azul-escuro);
+  margin-bottom: 1.5rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--borda);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.input {
+  width: 100%;
+  padding: .65rem .9rem;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .875rem;
+  color: var(--texto-principal);
+  background: var(--fundo);
+  transition: var(--transition);
+  outline: none;
+  resize: vertical;
+}
+
+.input:focus {
+  border-color: var(--azul-claro);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(46,111,190,.12);
+}
+
+.input::placeholder {
+  color: #b0bed1;
+  font-weight: 300;
+}
+
+textarea.input {
+  min-height: 90px;
+  line-height: 1.55;
+}
+
+/* Botão submit do form */
+.btn,
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .65rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  background: var(--azul-claro);
+  color: #fff;
+  margin-top: .6rem;
+}
+
+.btn:hover,
+.btn-primary:hover {
+  background: var(--azul-medio);
+  box-shadow: 0 4px 14px rgba(46,111,190,.35);
+  transform: translateY(-1px);
+}
+
+/* ── Section title ────────────────────────────────────────── */
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem;
+  color: var(--azul-escuro);
+  margin-bottom: 1rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TABELA DE HISTÓRICO
+   ════════════════════════════════════════════════════════════ */
+.table-box {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--borda);
+  box-shadow: var(--sombra-card);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.table-box table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+}
+
+.table-box thead {
+  background: var(--fundo);
+  border-bottom: 1px solid var(--borda);
+}
+
+.table-box thead th {
+  padding: .85rem 1.2rem;
+  text-align: left;
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.table-box tbody tr {
+  border-bottom: 1px solid var(--borda);
+  transition: background var(--transition);
+}
+
+.table-box tbody tr:last-child { border-bottom: none; }
+.table-box tbody tr:hover { background: #f0f5ff; }
+
+.table-box tbody td {
+  padding: .9rem 1.2rem;
+  color: var(--texto-principal);
+  vertical-align: middle;
+  line-height: 1.45;
+}
+
+.table-box tbody td:first-child {
+  font-weight: 600;
+  color: var(--azul-medio);
+  white-space: nowrap;
+}
+
+/* Coluna ações */
+.acoes-prontuario { white-space: nowrap; }
+
+/* .actions-group gerado pelo JS */
+.actions-group {
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+}
+
+/* ── Botões pequenos (.btn-sm + variantes) ────────────────── */
+.btn-sm {
+  padding: .32rem .8rem;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  letter-spacing: .02em;
+}
+
+.btn-sm:hover { transform: translateY(-1px); }
+
+.btn-green {
+  background: #e6f9f3;
+  color: var(--verde-saude);
+}
+.btn-green:hover {
+  background: #c6f0e2;
+  box-shadow: 0 3px 8px rgba(24,168,124,.2);
+}
+
+.btn-blue {
+  background: #e8f1fd;
+  color: var(--azul-claro);
+}
+.btn-blue:hover {
+  background: #d0e4fb;
+  box-shadow: 0 3px 8px rgba(46,111,190,.2);
+}
+
+.btn-red {
+  background: #fff0f0;
+  color: #c0392b;
+}
+.btn-red:hover {
+  background: #ffe3e3;
+  box-shadow: 0 3px 8px rgba(192,57,43,.15);
+}
+
+/* ════════════════════════════════════════════════════════════
+   DETALHES DO REGISTRO  (#detalhes-prontuario > .detalhes-card)
+   gerado por verDetalhesProntuario()
+   ════════════════════════════════════════════════════════════ */
+#detalhes-prontuario {
+  animation: slideDown .28s cubic-bezier(.4,0,.2,1);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Container do card de detalhes */
+.detalhes-card {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--azul-accent);
+  box-shadow: 0 4px 24px rgba(59,158,255,.12);
+  padding: 2rem;
+}
+
+.detalhes-card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  color: var(--azul-escuro);
+  margin-bottom: 1.2rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--borda);
+}
+
+/* .detalhes-grid — data e profissional lado a lado */
+.detalhes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem 2rem;
+  margin-bottom: 1.4rem;
+  background: var(--fundo);
+  border-radius: var(--radius-sm);
+  padding: .9rem 1.1rem;
+  border: 1px solid var(--borda);
+}
+
+.detalhes-grid p {
+  font-size: .875rem;
+  color: var(--texto-principal);
+  line-height: 1.6;
+}
+
+.detalhes-grid p strong {
+  display: block;
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: .2rem;
+}
+
+/* .detalhe-bloco — cada seção (queixa, procedimento, etc.) */
+.detalhe-bloco {
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--fundo);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--borda);
+  transition: border-color var(--transition);
+}
+
+.detalhe-bloco:last-child { margin-bottom: 0; }
+.detalhe-bloco:hover { border-color: #b8d0f0; }
+
+.detalhe-bloco h3 {
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+  margin-bottom: .5rem;
+}
+
+.detalhe-bloco p {
+  font-size: .9rem;
+  color: var(--texto-principal);
+  line-height: 1.65;
+}
+
+/* ── Responsivo ───────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .page { flex-direction: column; }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    position: relative;
+  }
+
+  .sidebar h2 {
+    padding: 0 1.5rem 0 0;
+    border-bottom: none;
+    border-right: 1px solid rgba(255,255,255,.15);
+    margin-bottom: 0;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .sidebar ul {
+    display: flex;
+    gap: .2rem;
+    overflow-x: auto;
+  }
+
+  .sidebar ul li a {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    padding: .4rem .8rem;
+    white-space: nowrap;
+    font-size: .78rem;
+  }
+
+  .sidebar ul li a.active,
+  .sidebar ul li a:hover {
+    border-left-color: transparent;
+    border-bottom-color: var(--azul-accent);
+  }
+
+  .main-content { padding: 1.5rem; }
+
+  .form-grid,
+  .detalhes-grid { grid-template-columns: 1fr; }
+
+  .form-group.full-width { grid-column: 1; }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento | Clínica System</title>
+  
+  
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="./agendamento.css">
+</head>
+<body>
+  <div class="page">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Clínica</h2>
+   <ul>
+        <li><a href="../../dashboard.html">Dashboard</a></li>
+        <li><a href="../agendamento/agendamento.html">Agendamento</a></li>
+        <li><a href="../pacientes/pacientes.html">Pacientes</a></li>
+        <li><a href="../financeiro/financeiro.html">Financeiro</a></li>
+        <li><a href="../prontuario/prontuario.html">Prontuário</a></li>
+        <li><a href="../estoque/estoque.html">Estoque</a></li>
+        <li><a href="../modules/relatorios/relatorios.html">Relatórios</a></li>
+        <li><a href="../modules/whatsapp/whatsapp.html">WhatsApp</a></li>
+        <li><a href="#" onclick="logout()">Sair</a></li>
+      </ul>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <div class="topbar">
+        <strong>Módulo de Agendamento</strong>
+      </div>
+
+      <div class="page-header">
+        <h1>Agendar Consulta</h1>
+        <p>Cadastre e acompanhe os atendimentos da clínica.</p>
+      </div>
+
+      <!-- Formulário de agendamento -->
+      <div class="card form-card">
+        <form id="form-agendamento">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="paciente">Paciente</label>
+              <select id="paciente" class="input" required>
+                <option value="">Selecione um paciente</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="profissional">Profissional</label>
+              <input type="text" id="profissional" class="input" placeholder="Nome do profissional" required>
+            </div>
+
+            <div class="form-group">
+              <label for="data">Data</label>
+              <input type="date" id="data" class="input" required>
+            </div>
+
+            <div class="form-group">
+              <label for="horario">Horário</label>
+              <input type="time" id="horario" class="input" required>
+            </div>
+
+            <div class="form-group">
+              <label for="tipo">Tipo de Atendimento</label>
+              <input type="text" id="tipo" class="input" placeholder="Ex: Avaliação, Limpeza" required>
+            </div>
+
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status" class="input" required>
+                <option value="agendada">Agendada</option>
+                <option value="confirmada">Confirmada</option>
+                <option value="realizada">Realizada</option>
+                <option value="cancelada">Cancelada</option>
+                <option value="faltou">Faltou</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-salvar">Salvar Consulta</button>
+        </form>
+      </div>
+
+      <!-- Filtros -->
+      <h2 class="section-title">Consultas Cadastradas</h2>
+      <div class="filtros card">
+        <h3>Filtrar Consultas</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="filtro-status">Status</label>
+            <select id="filtro-status" class="input">
+              <option value="">Todos</option>
+              <option value="agendada">Agendada</option>
+              <option value="confirmada">Confirmada</option>
+              <option value="realizada">Realizada</option>
+              <option value="cancelada">Cancelada</option>
+              <option value="faltou">Faltou</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="filtro-profissional">Profissional</label>
+            <input type="text" id="filtro-profissional" class="input" placeholder="Nome do profissional">
+          </div>
+
+          <div class="form-group">
+            <label for="filtro-data">Data</label>
+            <input type="date" id="filtro-data" class="input">
+          </div>
+        </div>
+        <button id="btn-filtrar" class="btn btn-secondary">Filtrar</button>
+      </div>
+
+      <!-- Tabela de consultas -->
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Paciente</th>
+              <th>Profissional</th>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Tipo</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-consultas">
+            <!-- Exemplo de linha -->
+            <tr>
+              <td>Fabricio</td>
+              <td>Dr. Carlos</td>
+              <td>27/03/2026</td>
+              <td>10:00</td>
+              <td>Limpeza</td>
+              <td>Realizada</td>
+             <td>
+  <button class="btn-action btn-edit">Editar</button>
+  <button class="btn-action btn-payment">Pagamento</button>
+  <button class="btn-action btn-close">Encerrar</button>
+  <button class="btn-action btn-confirm">Confirmar</button>
+  <button class="btn-action btn-realize">Realizar</button>
+  <button class="btn-action btn-falta">Falta</button>
+  <button class="btn-action btn-cancel">Cancelar</button>
+</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/auth.js"></script>
+  <script>protegerPagina();</script>
+  <script src="./agendamento.js"></script>
+</body>
+</html>

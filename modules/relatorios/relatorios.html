@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios | Clínica System</title>
+
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="./relatorios.css">
+</head>
+<body>
+  <div class="page">
+
+    <aside class="sidebar">
+      <h2>Clínica</h2>
+      <ul>
+    <li><a href="../../dashboard.html">Dashboard</a></li>
+    <li><a href="../agendamento/agendamento.html">Agendamento</a></li>
+    <li><a href="../pacientes/pacientes.html">Pacientes</a></li>
+    <li><a href="../financeiro/financeiro.html">Financeiro</a></li>
+    <li><a href="../prontuario/prontuario.html">Prontuário</a></li>
+    <li><a href="../estoque/estoque.html">Estoque</a></li>
+    <li><a href="../relatorios/relatorios.html">Relatórios</a></li>
+    <li><a href="../whatsapp/whatsapp.html">WhatsApp</a></li>
+    <li><a href="#" onclick="logout()">Sair</a></li>
+  </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <strong>Módulo de Relatórios</strong>
+      </div>
+
+      <div class="page-header">
+        <h1>Relatórios da Clínica</h1>
+        <p>Visualize e exporte resumos financeiros, de agendamentos e de pacientes.</p>
+      </div>
+
+      <!-- Cards de resumo geral -->
+      <section class="resumo-grid" id="resumo-geral"></section>
+
+      <!-- Filtro de período -->
+      <div class="card-box filtro-periodo">
+        <h2>Filtrar por Período</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="data-inicio">Data Início</label>
+            <input type="date" id="data-inicio" class="input">
+          </div>
+          <div class="form-group">
+            <label for="data-fim">Data Fim</label>
+            <input type="date" id="data-fim" class="input">
+          </div>
+          <div class="form-group">
+            <label for="tipo-relatorio">Tipo de Relatório</label>
+            <select id="tipo-relatorio" class="input">
+              <option value="todos">Todos</option>
+              <option value="financeiro">Financeiro</option>
+              <option value="agendamentos">Agendamentos</option>
+              <option value="pacientes">Pacientes</option>
+              <option value="estoque">Estoque</option>
+            </select>
+          </div>
+        </div>
+        <div class="filtro-acoes">
+          <button class="btn btn-primary" onclick="gerarRelatorio()">Gerar Relatório</button>
+          <button class="btn btn-outline" onclick="limparFiltros()">Limpar Filtros</button>
+          <button class="btn btn-success" onclick="exportarCSV()">Exportar CSV</button>
+          <button class="btn btn-print" onclick="window.print()">Imprimir</button>
+        </div>
+      </div>
+
+      <!-- Seção Financeiro -->
+      <section class="relatorio-section" id="secao-financeiro">
+        <div class="section-header">
+          <h2 class="section-title">Relatório Financeiro</h2>
+          <div class="section-resumo" id="resumo-financeiro-rel"></div>
+        </div>
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Paciente</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Forma</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-financeiro"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seção Agendamentos -->
+      <section class="relatorio-section" id="secao-agendamentos">
+        <div class="section-header">
+          <h2 class="section-title">Relatório de Agendamentos</h2>
+          <div class="section-resumo" id="resumo-agendamentos-rel"></div>
+        </div>
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Paciente</th>
+                <th>Profissional</th>
+                <th>Tipo</th>
+                <th>Horário</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-agendamentos"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seção Pacientes -->
+      <section class="relatorio-section" id="secao-pacientes">
+        <div class="section-header">
+          <h2 class="section-title">Relatório de Pacientes</h2>
+          <div class="section-resumo" id="resumo-pacientes-rel"></div>
+        </div>
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Convênio</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-pacientes"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seção Estoque -->
+      <section class="relatorio-section" id="secao-estoque">
+        <div class="section-header">
+          <h2 class="section-title">Relatório de Estoque</h2>
+          <div class="section-resumo" id="resumo-estoque-rel"></div>
+        </div>
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Mínimo</th>
+                <th>Validade</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-estoque"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../../assets/js/auth.js"></script>
+  <script>protegerPagina();</script>
+  <script src="./relatorios.js"></script>
+</body>
+</html>

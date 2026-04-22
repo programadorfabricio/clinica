@@ -1,0 +1,332 @@
+/* ============================================================
+   agendamento.css — Clínica System
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&family=DM+Serif+Display:ital@0;1&display=swap");
+
+/* ── Variáveis ── */
+:root {
+  --azul-escuro:    #0f2744;
+  --azul-medio:     #1a4480;
+  --azul-claro:     #2e6fbe;
+  --azul-accent:    #3b9eff;
+  --verde-saude:    #18a87c;
+  --fundo:          #f4f7fb;
+  --fundo-card:     #ffffff;
+  --borda:          #dce6f5;
+  --texto-principal:#1a2b45;
+  --texto-suave:    #5a7299;
+  --sombra-card:    0 2px 16px rgba(15,39,68,.08);
+  --radius:         14px;
+  --radius-sm:      8px;
+  --transition:     .22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--fundo);
+  color: var(--texto-principal);
+  min-height: 100vh;
+}
+
+/* ── Layout ── */
+.page { display: flex; min-height: 100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: var(--azul-escuro);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 1.5rem;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.sidebar h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.45rem;
+  color: #fff;
+  padding: 0 1.5rem 1.8rem;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  margin-bottom: .6rem;
+}
+.sidebar ul { list-style: none; padding: 0; flex: 1; }
+.sidebar ul li a {
+  display: block;
+  padding: .65rem 1.5rem;
+  color: rgba(255,255,255,.68);
+  text-decoration: none;
+  font-size: .875rem;
+  border-left: 3px solid transparent;
+  transition: var(--transition);
+}
+.sidebar ul li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,.07);
+  border-left-color: var(--azul-accent);
+}
+.sidebar ul li a.active {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(59,158,255,.15);
+  border-left-color: var(--azul-accent);
+}
+
+/* ── Main ── */
+.main-content {
+  flex: 1;
+  padding: 0 2.5rem 3rem;
+  max-width: 1100px;
+}
+
+/* ── Topbar ── */
+.topbar {
+  padding: 1.1rem 0;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 2rem;
+}
+
+/* ── Page header ── */
+.page-header { margin-bottom: 2rem; }
+.page-header h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: 2rem;
+  color: var(--azul-escuro);
+  margin-bottom: .35rem;
+}
+.page-header p { color: var(--texto-suave); font-size: .92rem; font-weight: 300; }
+
+/* ── Formulário ── */
+.form-card {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-card);
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem 1.5rem;
+}
+.form-group label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 500;
+  margin-bottom: .4rem;
+  color: var(--texto-suave);
+}
+.input {
+  width: 100%;
+  padding: .65rem .8rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  font-family: "DM Sans", sans-serif;
+  color: var(--texto-principal);
+  background: #fff;
+  transition: var(--transition);
+}
+.input:focus {
+  border-color: var(--azul-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,158,255,.15);
+}
+
+/* ── Botões principais ── */
+.btn {
+  display: inline-block;
+  padding: .65rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+.btn-primary { background: var(--azul-accent); color: #fff; }
+.btn-primary:hover { background: var(--azul-claro); }
+.btn-secondary { background: var(--verde-saude); color: #fff; margin-top: 1rem; }
+.btn-secondary:hover { background: #129b6f; }
+
+/* ── Filtros ── */
+.filtros {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-card);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.filtros h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--azul-medio);
+  margin-bottom: 1rem;
+}
+
+/* ── Tabela ── */
+.table-box {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-card);
+  overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+thead { background: var(--fundo); }
+thead th {
+  text-align: left;
+  padding: .9rem 1rem;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  border-bottom: 1px solid var(--borda);
+  white-space: nowrap;
+}
+tbody td {
+  padding: .85rem 1rem;
+  font-size: .9rem;
+  border-bottom: 1px solid var(--borda);
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(59,158,255,.04); }
+
+/* ══════════════════════════════════════════════════════════
+   BADGES DE STATUS (coluna Status)
+   ══════════════════════════════════════════════════════════ */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-badge.agendada   { background: #eff6ff; color: #1d4ed8; }
+.status-badge.agendada::before   { background: #3b82f6; }
+
+.status-badge.confirmada { background: #f0fdf4; color: #15803d; }
+.status-badge.confirmada::before { background: #22c55e; }
+
+.status-badge.realizada  { background: #dcfce7; color: #15803d; }
+.status-badge.realizada::before  { background: #16a34a; }
+
+.status-badge.cancelada  { background: #fef2f2; color: #dc2626; }
+.status-badge.cancelada::before  { background: #ef4444; }
+
+.status-badge.faltou     { background: #fef3c7; color: #b45309; }
+.status-badge.faltou::before     {
+  background: #f59e0b;
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   BOTÕES DE AÇÃO (coluna Ações)
+   ══════════════════════════════════════════════════════════ */
+.acoes-consulta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Base de todos os botões de ação */
+.acoes-consulta button,
+.btn-editar-consulta,
+.btn-pagamento,
+.btn-status {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+/* Editar — azul suave */
+.btn-editar-consulta {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+.btn-editar-consulta:hover { background: #dbeafe; }
+
+/* Pagamento — verde suave */
+.btn-pagamento {
+  background: #dcfce7;
+  color: #15803d;
+}
+.btn-pagamento:hover { background: #bbf7d0; }
+
+/* Confirmar — azul */
+.btn-status.confirmar {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+.btn-status.confirmar:hover { background: #dbeafe; }
+
+/* Realizar / Realizada — verde */
+.btn-status.realizar,
+.btn-status.realizada {
+  background: #dcfce7;
+  color: #15803d;
+}
+.btn-status.realizar:hover,
+.btn-status.realizada:hover { background: #bbf7d0; }
+
+/* Falta — amarelo */
+.btn-status.falta {
+  background: #fef3c7;
+  color: #b45309;
+}
+.btn-status.falta:hover { background: #fde68a; }
+
+/* Cancelar — vermelho suave */
+.btn-status.cancelar {
+  background: #fef2f2;
+  color: #dc2626;
+}
+.btn-status.cancelar:hover { background: #fee2e2; }
+
+/* Encerrada — cinza neutro, sem hover */
+.btn-status.encerrada {
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  .main-content { padding: 0 1rem 2rem; }
+  .acoes-consulta { flex-direction: column; align-items: flex-start; }
+}

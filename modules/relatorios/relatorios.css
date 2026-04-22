@@ -1,0 +1,369 @@
+/* ============================================================
+   relatorios.css — Clínica System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+
+/* ── Variáveis ── */
+:root {
+  --azul-escuro:    #0f2744;
+  --azul-medio:     #1a4480;
+  --azul-claro:     #2e6fbe;
+  --azul-accent:    #3b9eff;
+  --verde-saude:    #18a87c;
+  --fundo:          #f4f7fb;
+  --fundo-card:     #ffffff;
+  --borda:          #dce6f5;
+  --texto-principal:#1a2b45;
+  --texto-suave:    #5a7299;
+  --sombra-card:    0 2px 16px rgba(15,39,68,.08);
+  --radius:         14px;
+  --radius-sm:      8px;
+  --transition:     .22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--fundo);
+  color: var(--texto-principal);
+  min-height: 100vh;
+}
+
+/* ── Layout ── */
+.page { display: flex; min-height: 100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: var(--azul-escuro);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 1.5rem;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+}
+.sidebar h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.45rem;
+  color: #fff;
+  padding: 0 1.5rem 1.8rem;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  margin-bottom: .6rem;
+}
+.sidebar ul { list-style: none; padding: 0; flex: 1; }
+.sidebar ul li a {
+  display: block;
+  padding: .65rem 1.5rem;
+  color: rgba(255,255,255,.68);
+  text-decoration: none;
+  font-size: .875rem;
+  border-left: 3px solid transparent;
+  transition: var(--transition);
+}
+.sidebar ul li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,.07);
+  border-left-color: var(--azul-accent);
+}
+.sidebar ul li a.active {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(59,158,255,.15);
+  border-left-color: var(--azul-accent);
+}
+
+/* ── Main ── */
+.main-content {
+  flex: 1;
+  padding: 0 2.5rem 3rem;
+  max-width: 1200px;
+}
+
+/* ── Topbar ── */
+.topbar {
+  padding: 1.1rem 0;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 2rem;
+}
+
+/* ── Page header ── */
+.page-header { margin-bottom: 2rem; }
+.page-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--azul-escuro);
+  margin-bottom: .35rem;
+}
+.page-header p { color: var(--texto-suave); font-size: .92rem; font-weight: 300; }
+
+/* ── Cards de resumo geral ── */
+.resumo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.resumo-card {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-card);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.resumo-card .rc-label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.resumo-card .rc-valor {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  line-height: 1;
+}
+.resumo-card .rc-detalhe {
+  font-size: .8rem;
+  color: var(--texto-suave);
+}
+.resumo-card.verde .rc-valor { color: var(--verde-saude); }
+.resumo-card.amarelo .rc-valor { color: #f59e0b; }
+.resumo-card.vermelho .rc-valor { color: #dc2626; }
+.resumo-card.azul .rc-valor { color: var(--azul-accent); }
+
+/* ── Filtro ── */
+.card-box {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-card);
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+}
+.card-box h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--azul-escuro);
+  margin-bottom: 1.2rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem 1.5rem;
+  margin-bottom: 1.4rem;
+}
+.form-group label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 500;
+  margin-bottom: .4rem;
+  color: var(--texto-suave);
+}
+.input {
+  width: 100%;
+  padding: .65rem .8rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--texto-principal);
+  background: #fff;
+  transition: var(--transition);
+}
+.input:focus {
+  border-color: var(--azul-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,158,255,.15);
+}
+
+/* ── Botões de ação do filtro ── */
+.filtro-acoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: .6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: .88rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-primary { background: var(--azul-accent); color: #fff; }
+.btn-primary:hover { background: var(--azul-claro); }
+
+.btn-outline {
+  background: #fff;
+  color: var(--texto-suave);
+  border: 1.5px solid var(--borda);
+}
+.btn-outline:hover { background: var(--fundo); border-color: #b0c4de; }
+
+.btn-success { background: #dcfce7; color: #15803d; }
+.btn-success:hover { background: #bbf7d0; }
+
+.btn-print { background: #f5f3ff; color: #6d28d9; }
+.btn-print:hover { background: #ede9fe; }
+
+/* ── Seções de relatório ── */
+.relatorio-section {
+  margin-bottom: 2.5rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--azul-escuro);
+}
+
+.section-resumo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+}
+.chip-azul   { background: #eff6ff; color: #1d4ed8; }
+.chip-verde  { background: #dcfce7; color: #15803d; }
+.chip-amarelo{ background: #fef3c7; color: #b45309; }
+.chip-vermelho { background: #fef2f2; color: #dc2626; }
+.chip-roxo   { background: #f5f3ff; color: #6d28d9; }
+
+/* ── Tabela ── */
+.table-box {
+  background: var(--fundo-card);
+  border-radius: var(--radius);
+  box-shadow: var(--sombra-card);
+  overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+thead { background: var(--fundo); }
+thead th {
+  text-align: left;
+  padding: .9rem 1rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  border-bottom: 1px solid var(--borda);
+  white-space: nowrap;
+}
+tbody td {
+  padding: .8rem 1rem;
+  font-size: .88rem;
+  border-bottom: 1px solid var(--borda);
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(59,158,255,.04); }
+
+.td-vazio {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--texto-suave);
+  font-size: .9rem;
+}
+
+/* ── Badges de status (reutilizados) ── */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Financeiro */
+.badge-pago       { background: #dcfce7; color: #15803d; }
+.badge-pago::before { background: #22c55e; }
+.badge-pendente   { background: #fef3c7; color: #b45309; }
+.badge-pendente::before { background: #f59e0b; animation: pulse-dot 1.5s infinite; }
+.badge-cancelado  { background: #f1f5f9; color: #64748b; }
+.badge-cancelado::before { background: #94a3b8; }
+
+/* Agendamentos */
+.badge-agendada   { background: #eff6ff; color: #1d4ed8; }
+.badge-agendada::before { background: #3b82f6; }
+.badge-confirmada { background: #f0fdf4; color: #15803d; }
+.badge-confirmada::before { background: #22c55e; }
+.badge-realizada  { background: #dcfce7; color: #15803d; }
+.badge-realizada::before  { background: #16a34a; }
+.badge-cancelada  { background: #fef2f2; color: #dc2626; }
+.badge-cancelada::before  { background: #ef4444; }
+.badge-faltou     { background: #fef3c7; color: #b45309; }
+.badge-faltou::before     { background: #f59e0b; animation: pulse-dot 1.5s infinite; }
+
+/* Pacientes */
+.badge-ativo      { background: #dcfce7; color: #15803d; }
+.badge-ativo::before { background: #22c55e; }
+.badge-inativo    { background: #fef2f2; color: #dc2626; }
+.badge-inativo::before { background: #ef4444; }
+
+/* Estoque */
+.badge-normal     { background: #dcfce7; color: #15803d; }
+.badge-normal::before { background: #22c55e; }
+.badge-baixo      { background: #fef3c7; color: #b45309; }
+.badge-baixo::before { background: #f59e0b; animation: pulse-dot 1.5s infinite; }
+.badge-zerado     { background: #fef2f2; color: #dc2626; }
+.badge-zerado::before { background: #ef4444; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── Print ── */
+@media print {
+  .sidebar, .filtro-periodo, .filtro-acoes, .topbar { display: none !important; }
+  .main-content { padding: 0; max-width: 100%; }
+  .page { display: block; }
+  .table-box { box-shadow: none; border: 1px solid #dce6f5; }
+  .relatorio-section { page-break-inside: avoid; margin-bottom: 2rem; }
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  .main-content { padding: 0 1rem 2rem; }
+  .resumo-grid { grid-template-columns: 1fr 1fr; }
+  .filtro-acoes { flex-direction: column; }
+}

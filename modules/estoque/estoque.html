@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estoque | Clínica System</title>
+
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="./estoque.css">
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Clínica</h2>
+      <ul>
+        <li><a href="../../dashboard.html">Dashboard</a></li>
+        <li><a href="../agendamento/agendamento.html">Agendamento</a></li>
+        <li><a href="../pacientes/pacientes.html">Pacientes</a></li>
+        <li><a href="../financeiro/financeiro.html">Financeiro</a></li>
+        <li><a href="../prontuario/prontuario.html">Prontuário</a></li>
+        <li><a href="../estoque/estoque.html">Estoque</a></li>
+        <li><a href="../relatorios/relatorios.html">Relatórios</a></li>
+        <li><a href="../whatsapp/whatsapp.html">WhatsApp</a></li>
+        <li><a href="#" onclick="logout()">Sair</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <strong>Controle de Estoque</strong>
+      </div>
+
+      <div class="page-header">
+        <h1>Estoque da Clínica</h1>
+        <p>Cadastre, acompanhe e controle os produtos e materiais da clínica.</p>
+      </div>
+
+      <div class="resumo-grid" id="resumo-estoque"></div>
+
+      <div class="card-box">
+        <h2>Novo Produto</h2>
+
+        <form id="form-estoque">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nome">Nome do Produto</label>
+              <input type="text" id="nome" class="input" placeholder="Ex: Luva descartável">
+            </div>
+
+            <div class="form-group">
+              <label for="categoria">Categoria</label>
+              <input type="text" id="categoria" class="input" placeholder="Ex: Descartáveis">
+            </div>
+
+            <div class="form-group">
+              <label for="quantidade">Quantidade</label>
+              <input type="number" id="quantidade" class="input" placeholder="Ex: 20">
+            </div>
+
+           <div class="form-group">
+  <label for="unidade">Unidade</label>
+  <select id="unidade" class="input">
+    <option value="">Selecione</option>
+    <option value="unidade">Unidade</option>
+    <option value="caixa">Caixa</option>
+    <option value="pacote">Pacote</option>
+    <option value="frasco">Frasco</option>
+    <option value="ampola">Ampola</option>
+    <option value="seringa">Seringa</option>
+    <option value="comprimido">Comprimido</option>
+    <option value="ml">mL</option>
+    <option value="g">g</option>
+    <option value="kg">kg</option>
+    <option value="litro">Litro</option>
+  </select>
+</div>
+
+            <div class="form-group">
+              <label for="minimo">Estoque Mínimo</label>
+              <input type="number" id="minimo" class="input" placeholder="Ex: 5">
+            </div>
+
+            <div class="form-group">
+              <label for="validade">Validade</label>
+              <input type="date" id="validade" class="input">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Salvar Produto</button>
+        </form>
+      </div>
+
+      <h2 class="section-title">Produtos em Estoque</h2>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Categoria</th>
+              <th>Quantidade</th>
+              <th>Unidade</th>
+              <th>Validade</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-estoque"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/auth.js"></script>
+  <script>
+    protegerPagina();
+  </script>
+  <script src="./estoque.js"></script>
+</body>
+</html> 

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp | Clínica System</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="./whatsapp.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Clínica</h2>
+    <ul>
+      <ul>
+    <li><a href="../../dashboard.html">Dashboard</a></li>
+    <li><a href="../agendamento/agendamento.html">Agendamento</a></li>
+    <li><a href="../pacientes/pacientes.html">Pacientes</a></li>
+    <li><a href="../financeiro/financeiro.html">Financeiro</a></li>
+    <li><a href="../prontuario/prontuario.html">Prontuário</a></li>
+    <li><a href="../estoque/estoque.html">Estoque</a></li>
+    <li><a href="../relatorios/relatorios.html">Relatórios</a></li>
+    <li><a href="../whatsapp/whatsapp.html">WhatsApp</a></li>
+    <li><a href="#" onclick="logout()">Sair</a></li>
+  </ul>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <main class="main-content">
+    <div class="topbar">
+      <strong>Módulo de WhatsApp</strong>
+    </div>
+
+    <div class="page-header">
+      <h1>WhatsApp</h1>
+      <p>Envie mensagens, lembretes e confirmações de consulta para seus pacientes.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon verde">📤</div>
+        <div class="stat-info">
+          <span>Enviadas hoje</span>
+          <strong id="stat-enviadas">0</strong>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon amarelo">⏳</div>
+        <div class="stat-info">
+          <span>Pendentes</span>
+          <strong id="stat-pendentes">0</strong>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon azul">📅</div>
+        <div class="stat-info">
+          <span>Agendadas</span>
+          <strong id="stat-agendadas">0</strong>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon vermelho">❌</div>
+        <div class="stat-info">
+          <span>Falharam</span>
+          <strong id="stat-falharam">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab ativo" onclick="mudarTab(this, 'tab-nova')">Nova Mensagem</button>
+      <button class="tab" onclick="mudarTab(this, 'tab-historico')">Histórico</button>
+      <button class="tab" onclick="mudarTab(this, 'tab-templates')">Templates</button>
+    </div>
+
+    <!-- ═══ TAB: NOVA MENSAGEM ═══ -->
+    <div id="tab-nova">
+      <div class="card form-card">
+        <div class="card-header">
+          <h3>Compor Mensagem</h3>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="destinatario">Paciente / Destinatário</label>
+            <select id="destinatario" class="input">
+              <option value="">Selecione um paciente</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" class="input" placeholder="(11) 99999-9999">
+          </div>
+          <div class="form-group">
+            <label for="tipo-msg">Tipo de Mensagem</label>
+            <select id="tipo-msg" class="input" onchange="aplicarTemplate()">
+              <option value="">Mensagem livre</option>
+              <option value="lembrete">Lembrete de consulta</option>
+              <option value="confirmacao">Confirmação de consulta</option>
+              <option value="cobranca">Cobrança / Pagamento</option>
+              <option value="pos-consulta">Pós-consulta</option>
+              <option value="aniversario">Aniversário</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="agendar-envio">Agendar envio (opcional)</label>
+            <input type="datetime-local" id="agendar-envio" class="input">
+          </div>
+        </div>
+
+        <div class="form-group mensagem-group">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" class="input" rows="4"
+            placeholder="Digite a mensagem ou selecione um template acima..."
+            oninput="atualizarPreview()"></textarea>
+        </div>
+
+        <div class="variaveis-box">
+          <label class="label-sm">Inserir variável</label>
+          <div class="chips">
+            <span class="chip" onclick="inserirVariavel('{nome}')">👤 Nome</span>
+            <span class="chip" onclick="inserirVariavel('{data}')">📅 Data</span>
+            <span class="chip" onclick="inserirVariavel('{horario}')">🕐 Horário</span>
+            <span class="chip" onclick="inserirVariavel('{profissional}')">🩺 Profissional</span>
+            <span class="chip" onclick="inserirVariavel('{clinica}')">🏥 Clínica</span>
+            <span class="chip" onclick="inserirVariavel('{valor}')">💰 Valor</span>
+          </div>
+        </div>
+
+        <div class="preview-section">
+          <label class="label-sm">Preview</label>
+          <div class="preview-wpp">
+            <div class="bubble">
+              <div id="preview-texto" class="preview-placeholder">Sua mensagem aparecerá aqui...</div>
+              <div class="bubble-time">10:30 ✓✓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-wpp" onclick="enviarMensagem()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.533 5.872L0 24l6.32-1.503A11.959 11.959 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.497-5.193-1.364l-.373-.22-3.873.921.975-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            Enviar Agora
+          </button>
+          <button class="btn btn-secondary" onclick="agendarMensagem()">📅 Agendar Envio</button>
+          <button class="btn btn-outline" onclick="limparForm()">Limpar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: HISTÓRICO ═══ -->
+    <div id="tab-historico" style="display:none">
+      <div class="filtros card">
+        <h3>Filtrar Mensagens</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="filtro-hist-status">Status</label>
+            <select id="filtro-hist-status" class="input">
+              <option value="">Todos</option>
+              <option value="enviada">Enviada</option>
+              <option value="pendente">Pendente</option>
+              <option value="agendada">Agendada</option>
+              <option value="falhou">Falhou</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="filtro-hist-paciente">Paciente</label>
+            <input type="text" id="filtro-hist-paciente" class="input" placeholder="Nome do paciente">
+          </div>
+          <div class="form-group">
+            <label for="filtro-hist-data">Data</label>
+            <input type="date" id="filtro-hist-data" class="input">
+          </div>
+        </div>
+        <button class="btn btn-secondary" onclick="filtrarHistorico()">Filtrar</button>
+      </div>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Paciente</th>
+              <th>Telefone</th>
+              <th>Tipo</th>
+              <th>Mensagem</th>
+              <th>Envio</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-mensagens">
+            <tr><td colspan="7">Nenhuma mensagem registrada.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: TEMPLATES ═══ -->
+    <div id="tab-templates" style="display:none">
+      <div class="templates-grid">
+
+        <div class="card template-card">
+          <div class="card-header">
+            <h3>Lembrete de Consulta</h3>
+            <button class="btn-acao editar" onclick="editarTemplate('lembrete')">Editar</button>
+          </div>
+          <div class="preview-wpp">
+            <div class="bubble">
+              <div id="tpl-lembrete">Olá, {nome}! 👋 Lembramos que você tem uma consulta agendada para *{data}* às *{horario}* com {profissional}. Em caso de dúvidas, entre em contato. — {clinica}</div>
+              <div class="bubble-time">✓✓</div>
+            </div>
+          </div>
+          <button class="btn btn-outline tpl-usar" onclick="usarTemplate('lembrete')">Usar este template</button>
+        </div>
+
+        <div class="card template-card">
+          <div class="card-header">
+            <h3>Confirmação de Consulta</h3>
+            <button class="btn-acao editar" onclick="editarTemplate('confirmacao')">Editar</button>
+          </div>
+          <div class="preview-wpp">
+            <div class="bubble">
+              <div id="tpl-confirmacao">Olá, {nome}! ✅ Sua consulta com {profissional} em *{data}* às *{horario}* foi *confirmada*. Te esperamos! — {clinica}</div>
+              <div class="bubble-time">✓✓</div>
+            </div>
+          </div>
+          <button class="btn btn-outline tpl-usar" onclick="usarTemplate('confirmacao')">Usar este template</button>
+        </div>
+
+        <div class="card template-card">
+          <div class="card-header">
+            <h3>Cobrança / Pagamento</h3>
+            <button class="btn-acao editar" onclick="editarTemplate('cobranca')">Editar</button>
+          </div>
+          <div class="preview-wpp">
+            <div class="bubble">
+              <div id="tpl-cobranca">Olá, {nome}! 💳 Identificamos um valor de *R$ {valor}* em aberto referente ao seu atendimento. Por favor, regularize para que possamos continuar atendendo você. — {clinica}</div>
+              <div class="bubble-time">✓✓</div>
+            </div>
+          </div>
+          <button class="btn btn-outline tpl-usar" onclick="usarTemplate('cobranca')">Usar este template</button>
+        </div>
+
+        <div class="card template-card">
+          <div class="card-header">
+            <h3>Pós-consulta</h3>
+            <button class="btn-acao editar" onclick="editarTemplate('pos-consulta')">Editar</button>
+          </div>
+          <div class="preview-wpp">
+            <div class="bubble">
+              <div id="tpl-pos-consulta">Olá, {nome}! 😊 Esperamos que seu atendimento com {profissional} tenha sido ótimo. Caso tenha alguma dúvida ou precise remarcar, estamos à disposição! — {clinica}</div>
+              <div class="bubble-time">✓✓</div>
+            </div>
+          </div>
+          <button class="btn btn-outline tpl-usar" onclick="usarTemplate('pos-consulta')">Usar este template</button>
+        </div>
+
+        <div class="card template-card">
+          <div class="card-header">
+            <h3>Aniversário</h3>
+            <button class="btn-acao editar" onclick="editarTemplate('aniversario')">Editar</button>
+          </div>
+          <div class="preview-wpp">
+            <div class="bubble">
+              <div id="tpl-aniversario">Parabéns, {nome}! 🎉🎂 Toda a equipe da {clinica} deseja um feliz aniversário e muita saúde! Você é especial para nós. 💙</div>
+              <div class="bubble-time">✓✓</div>
+            </div>
+          </div>
+          <button class="btn btn-outline tpl-usar" onclick="usarTemplate('aniversario')">Usar este template</button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../../assets/js/auth.js"></script>
+<script>protegerPagina();</script>
+<script src="./whatsapp.js"></script>
+</body>
+</html>

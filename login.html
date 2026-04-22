@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Clínica System</title>
+
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+  <link rel="stylesheet" href="./assets/css/components.css">
+  <link rel="stylesheet" href="./assets/css/layout.css">
+
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      padding: 36px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .login-box h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--secondary);
+    }
+
+    .login-box p {
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .login-box button {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .login-footer {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <section class="login-page">
+    <div class="login-box">
+      <h1>Clínica System</h1>
+      <p>Faça login para acessar o sistema</p>
+
+      <form id="form-login">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input class="input" type="email" id="email" placeholder="Digite seu e-mail">
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input class="input" type="password" id="senha" placeholder="Digite sua senha">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+
+      <div class="login-footer">
+        Sistema interno da clínica
+      </div>
+
+      <div class="login-footer">
+  <p><strong>Credenciais de acesso para demonstração:</strong></p>
+  <p>E-mail: <span style="color:#1d4ed8;">admin@clinica.com</span></p>
+  <p>Senha: <span style="color:#1d4ed8;">123456</span></p>
+</div>
+    </div>
+  </section>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Clínica System</title>
+
+  <link rel="stylesheet" href="./assets/css/variables.css" />
+  <link rel="stylesheet" href="./assets/css/global.css" />
+  <link rel="stylesheet" href="./assets/css/components.css" />
+  <link rel="stylesheet" href="./assets/css/layout.css" />
+  <link rel="stylesheet" href="./assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <h2>Clínica</h2>
+      <ul>
+        <li><a href="./dashboard.html">Dashboard</a></li>
+        <li><a href="./modules/agendamento/agendamento.html">Agendamento</a></li>
+        <li><a href="./modules/pacientes/pacientes.html">Pacientes</a></li>
+        <li><a href="./modules/financeiro/financeiro.html">Financeiro</a></li>
+        <li><a href="./modules/prontuario/prontuario.html">Prontuário</a></li>
+        <li><a href="./modules/estoque/estoque.html">Estoque</a></li>
+        <li><a href="./modules/relatorios/relatorios.html">Relatórios</a></li>
+        <li><a href="./modules/whatsapp/whatsapp.html">WhatsApp</a></li>
+        <li><a href="index.html" onclick="logout()">Sair</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <strong>Painel Administrativo</strong>
+      </div>
+
+      <div class="page-header">
+        <h1>Bem-vindo ao sistema 👋</h1>
+        <p>Acompanhe os principais dados da clínica em tempo real.</p>
+      </div>
+
+      <!-- Cards Resumo -->
+      <div class="resumo-grid">
+        <div class="resumo-card consultas">
+          <h3>Consultas Hoje</h3>
+          <p id="consultas-hoje">0</p>
+        </div>
+
+        <div class="resumo-card pacientes">
+          <h3>Pacientes Cadastrados</h3>
+          <p id="pacientes-total">0</p>
+        </div>
+
+        <div class="resumo-card confirmadas">
+          <h3>Confirmadas Hoje</h3>
+          <p id="confirmadas-hoje">0</p>
+        </div>
+
+        <div class="resumo-card canceladas">
+          <h3>Canceladas Hoje</h3>
+          <p id="canceladas-hoje">0</p>
+        </div>
+
+        <div class="resumo-card recebido">
+          <h3>Total Recebido</h3>
+          <p id="total-recebido">R$ 0,00</p>
+        </div>
+
+        <div class="resumo-card pendente">
+          <h3>Total Pendente</h3>
+          <p id="total-pendente">R$ 0,00</p>
+        </div>
+      </div>
+
+      <!-- Consultas do Dia -->
+      <h2 class="section-title">Consultas do Dia</h2>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Horário</th>
+              <th>Paciente</th>
+              <th>Profissional</th>
+              <th>Tipo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="lista-consultas-hoje"></tbody>
+        </table>
+      </div>
+
+      <!-- Próximas Consultas -->
+      <h2 class="section-title">Próximas Consultas</h2>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Paciente</th>
+              <th>Profissional</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="lista-proximas-consultas"></tbody>
+        </table>
+      </div>
+
+      <!-- Últimos Pacientes -->
+      <h2 class="section-title">Últimos Pacientes Cadastrados</h2>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Convênio</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="lista-ultimos-pacientes"></tbody>
+        </table>
+      </div>
+
+      <!-- Últimos Pagamentos -->
+      <h2 class="section-title">Últimos Pagamentos</h2>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Paciente</th>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="lista-ultimos-pagamentos"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="./assets/js/auth.js"></script>
+  <script>
+    protegerPagina();
+  </script>
+  <script src="./dashboard.js"></script>
+</body>
+</html>

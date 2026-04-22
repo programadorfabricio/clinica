@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prontuário do Paciente | Clínica System</title>
+
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="prontuario-detalhe.css">
+</head>
+<body>
+  <div class="page">
+    
+    <aside class="sidebar">
+      <h2>Clínica</h2>
+ <ul>
+    <li><a href="../../dashboard.html">Dashboard</a></li>
+    <li><a href="../agendamento/agendamento.html">Agendamento</a></li>
+    <li><a href="../pacientes/pacientes.html">Pacientes</a></li>
+    <li><a href="../financeiro/financeiro.html">Financeiro</a></li>
+    <li><a href="../prontuario/prontuario.html">Prontuário</a></li>
+    <li><a href="../estoque/estoque.html">Estoque</a></li>
+    <li><a href="../relatorios/relatorios.html">Relatórios</a></li>
+    <li><a href="../whatsapp/whatsapp.html">WhatsApp</a></li>
+    <li><a href="#" onclick="logout()">Sair</a></li>
+  </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <strong>Prontuário do Paciente</strong>
+      </div>
+
+      <div class="page-header">
+        <h1>Prontuário do Paciente</h1>
+        <p>Visualize os dados clínicos e registre novos atendimentos.</p>
+      </div>
+
+      <!-- DADOS DO PACIENTE -->
+      <div id="dados-paciente" class="dados-paciente-box"></div>
+
+      <!-- FORMULÁRIO -->
+      <div class="card form-card">
+        <h2>Novo Registro Clínico</h2>
+
+        <form id="form-prontuario">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="data">Data do Atendimento</label>
+              <input type="date" id="data" class="input">
+            </div>
+
+            <div class="form-group">
+              <label for="profissional">Profissional</label>
+              <input type="text" id="profissional" class="input" placeholder="Nome do profissional">
+            </div>
+
+            <div class="form-group full-width">
+              <label for="queixa">Queixa Principal</label>
+              <textarea id="queixa" class="input" rows="3" placeholder="Ex: Dor, sensibilidade, desconforto..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="procedimento">Procedimento Realizado</label>
+              <textarea id="procedimento" class="input" rows="3" placeholder="Ex: Avaliação clínica, limpeza, restauração..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="observacoes">Observações Clínicas</label>
+              <textarea id="observacoes" class="input" rows="4" placeholder="Detalhes importantes do atendimento..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="prescricao">Prescrição / Recomendações</label>
+              <textarea id="prescricao" class="input" rows="3" placeholder="Ex: medicação, orientações, retorno..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Salvar Registro</button>
+        </form>
+      </div>
+
+      <!-- HISTÓRICO -->
+      <h2 class="section-title">Histórico Clínico</h2>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Profissional</th>
+              <th>Queixa</th>
+              <th>Procedimento</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-prontuarios"></tbody>
+        </table>
+      </div>
+
+      <!-- DETALHES DO REGISTRO -->
+      <div id="detalhes-prontuario" class="detalhes-box" style="display: none;"></div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/auth.js"></script>
+  <script>
+    protegerPagina();
+  </script>
+  <script src="prontuario-detalhe.js"></script>
+</body>
+</html>

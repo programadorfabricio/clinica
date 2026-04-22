@@ -1,0 +1,26 @@
+:root {
+  /* Paleta principal (financeiro) */
+  --primary: #2e6fbe;          /* azul claro */
+  --primary-dark: #1a4480;     /* azul médio */
+  --secondary: #0f2744;        /* azul escuro */
+  --success: #18a87c;          /* verde saúde */
+  --warning: #f59e0b;          /* laranja alerta */
+  --danger: #dc2626;           /* vermelho erro */
+
+  /* Fundo e texto */
+  --bg: #f4f7fb;
+  --white: #ffffff;
+  --fundo-card: #ffffff;
+  --text: #1a2b45;             /* texto principal */
+  --text-light: #5a7299;       /* texto suave */
+  --border: #dce6f5;
+
+  /* Radius e sombra */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 24px rgba(15, 39, 68, 0.08);
+  --sombra-card: 0 2px 16px rgba(15,39,68,.08);
+
+  /* Tipografia */
+  --font: 'DM Sans', sans-serif;
+}
